@@ -147,11 +147,19 @@ const editPinByIdHandler = (request, h) => {
 
   const updatedAt = new Date().toISOString();
 
-
   if (!pin) {
     const response = h.response({
       status: 'fail',
-      message: 'Gagal memperbarui pin kartu. Mohon isi nama pengguna',
+      message: 'Gagal memperbarui pin kartu. Mohon pin pengguna tidak boleh kosong',
+    });
+    response.code(400);
+    return response;
+  }
+
+  if (pin.length < 6) {
+    const response = h.response({
+      status: 'fail',
+      message: 'Gagal memperbarui pin kartu. Mohon pin kartu harus 6 digit',
     });
     response.code(400);
     return response;
