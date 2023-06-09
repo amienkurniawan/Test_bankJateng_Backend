@@ -9,8 +9,22 @@ API :
 POST /addCard
 body data:  { nama, nomerkartu }
 
+response : 400
+status : fail
+message : Gagal menambahkan card. Mohon isi nomor card
+jika nomor kartu tidak di masukkan
 
- GET /getCardList
+response : 400
+status : fail
+message : Gagal menambahkan card. Mohon isi nama pengguna
+jika nama pengguna kartu tidak di masukkan
+
+response : 201
+status : success
+message : kartu berhasil ditambahkan
+jika kartu berhasil dibuat 
+
+ GET /getCardLists
  GET /getCardDetail/:id
  POST /setPIN/:id
  POST / deleteCard
