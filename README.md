@@ -1,6 +1,6 @@
 # TEST BANK JATENG AMIEN KURNIAWAN
-## untuk menjalankannya ketikan perintah 
-## npm install untuk menginstall node modules 
+## untuk menjalankan nya ketikan perintah 
+### npm install untuk menginstall node modules 
 
 ## ketikan perintah 
 ### npm start-dev untuk tahap development
@@ -30,9 +30,11 @@
 ### message : kartu berhasil ditambahkan
 ### jika kartu berhasil dibuat 
 
- GET /getCardLists
- GET /getCardDetail/:id
- POST /setPIN/:id
- POST / deleteCard
- GET / getTransactionList
- GET / getTransactionDetail /: id
+  GET /getCardLists
+  GET /getCardDetail/:id
+  POST /setPIN/:id
+  POST / deleteCard
+  GET / getTransactionList
+  GET / getTransactionDetail /: id
+  POST /inquiryTransaction
+  POST /postingTransaction

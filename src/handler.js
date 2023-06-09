@@ -1,6 +1,8 @@
 const { nanoid } = require("nanoid");
 const cards = require("./cards");
 const transactions = require("./transactions");
+const inquery = require("./inquery");
+
 
 const addCardHandler = (request, h) => {
   const { nama, nomerkartu, expiredDate } = request.payload;
@@ -262,6 +264,64 @@ const getTransactionDetail = (request, h) => {
 
 };
 
+const postingTransaction = (request, h) => {
+  const { idkartu, jumlahtransaksi } = request.payload;
+  const id = nanoid(16);
+
+  const insertedAt = new Date().toISOString();
+  const updatedAt = insertedAt;
+  const tanggalTransaction = insertedAt;
+
+  const card = cards.filter((n) => n.id === idkartu)[0];
+
+  if (card === undefined) {
+    const response = h.response({
+      status: 'fail',
+      message: 'card tidak ditemukan',
+    });
+    response.code(404);
+    return response;
+  }
+
+
+  if (!jumlahtransaksi) {
+    const response = h.response({
+      status: 'fail',
+      message: 'Gagal menambahkan transaksi. Mohon isi jumlah transaksi',
+    });
+    response.code(400);
+    return response;
+  }
+
+  let idCard = idkartu
+
+  const newTransaction = {
+    id, idCard, jumlahtransaksi, tanggalTransaction, insertedAt, updatedAt
+  };
+
+  inquery.push(newCard);
+
+  const isSuccess = inquery.filter((transaction) => transaction.id === id).length > 0;
+
+  if (isSuccess) {
+    const response = h.response({
+      status: 'success',
+      message: 'transaction berhasil ditambahkan',
+      data: {
+        cardId: id
+      }
+    });
+    response.code(201);
+    return response;
+  }
+
+  const response = h.response({
+    status: 'Failed',
+    message: 'transaction gagal ditambahkan',
+  });
+  response.code(500);
+  return response;
+};
 
 module.exports = {
   addCardHandler,
@@ -271,5 +331,7 @@ module.exports = {
   editCardByIdHandler,
   editPinByIdHandler,
   getTransactionListCardsHandler,
-  getTransactionDetail
+  getTransactionDetail,
+  // inquiryTransaction,
+  postingTransaction
 }

@@ -7,6 +7,7 @@ const {
   editPinByIdHandler,
   getTransactionListCardsHandler,
   getTransactionDetail,
+  postingTransaction,
 } = require("./handler");
 
 GET / login
@@ -19,7 +20,7 @@ GET / logout
 // GET / getTransactionList
 // GET / getTransactionDetail /: id
 POST / inquiryTransaction
-POST / postingTransaction
+// POST / postingTransaction
 
 
 const routes = [
@@ -58,6 +59,12 @@ const routes = [
     path: '/getTransactionDetail/{id}',
     handler: getTransactionDetail,
   },
+  {
+    method: 'POST',
+    path: '/postingTransaction',
+    handler: postingTransaction,
+  },
+
 ];
 
 module.exports = routes;
