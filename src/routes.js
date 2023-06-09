@@ -1,30 +1,62 @@
-const { deleteBookByIdHandler, addBookHandler, getAllBooksHandler, getBookByIdHandler, editBookByIdHandler } = require("./handler");
+const {
+  deleteCardsByIdHandler,
+  addCardHandler,
+  getAllCardsHandler,
+  getCardsByIdHandler,
+  // editCardByIdHandler,
+  editPinByIdHandler,
+  getTransactionListCardsHandler,
+  getTransactionDetail,
+} = require("./handler");
+
+GET / login
+GET / logout
+// POST /addCard
+// GET /getCardList
+// GET /getCardDetail/:id
+// POST /setPIN/:id
+// POST / deleteCard
+// GET / getTransactionList
+// GET / getTransactionDetail /: id
+POST / inquiryTransaction
+POST / postingTransaction
+
 
 const routes = [
   {
     method: 'POST',
-    path: '/books',
-    handler: addBookHandler
+    path: '/addCard',
+    handler: addCardHandler
   },
   {
     method: 'GET',
-    path: '/books',
-    handler: getAllBooksHandler,
+    path: '/getCardList',
+    handler: getAllCardsHandler,
   },
   {
     method: 'GET',
-    path: '/books/{bookId}',
-    handler: getBookByIdHandler,
+    path: '/getCardDetail/{id}',
+    handler: getCardsByIdHandler,
   },
   {
-    method: 'PUT',
-    path: '/books/{bookId}',
-    handler: editBookByIdHandler,
+    method: 'POST',
+    path: '/setPIN/{id}',
+    handler: editPinByIdHandler,
   },
   {
     method: 'DELETE',
-    path: '/books/{bookId}',
-    handler: deleteBookByIdHandler,
+    path: '/deleteCard/{id}',
+    handler: deleteCardsByIdHandler,
+  },
+  {
+    method: 'GET',
+    path: '/getTransactionList',
+    handler: getTransactionListCardsHandler,
+  },
+  {
+    method: 'GET',
+    path: '/getTransactionDetail/{id}',
+    handler: getTransactionDetail,
   },
 ];
 
