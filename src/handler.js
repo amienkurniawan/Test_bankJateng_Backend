@@ -3,7 +3,7 @@ const cards = require("./cards");
 const transactions = require("./transactions");
 
 const addCardHandler = (request, h) => {
-  const { nama, nomerkartu } = request.payload;
+  const { nama, nomerkartu, expiredDate } = request.payload;
   const id = nanoid(16);
   const pin = '123456'; // default pin
   const insertedAt = new Date().toISOString();
@@ -28,9 +28,18 @@ const addCardHandler = (request, h) => {
     return response;
   }
 
+  if (!expiredDate) {
+    const response = h.response({
+      status: 'fail',
+      message: 'Gagal menambahkan card. Mohon isi expired Date',
+    });
+    response.code(400);
+    return response;
+  }
+
 
   const newCard = {
-    id, nama, nomerkartu, pin, insertedAt, updatedAt
+    id, nama, nomerkartu, pin, expiredDate, insertedAt, updatedAt
   };
 
   cards.push(newCard);
