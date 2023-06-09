@@ -7,7 +7,7 @@ server node berjalan di port:9000
 
 API :
 POST /addCard
-body data:  { nama, nomerkartu }
+body data:  { nama, nomerkartu, expiredDate }
 
 response : 400
 status : fail
