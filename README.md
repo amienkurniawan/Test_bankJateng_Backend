@@ -54,11 +54,21 @@
 ### message : pin kartu berhasil diperbarui
 ### response : 200
 
-### body: data: { id, nama, nomerkartu, expiredDate }
 ### response : 404
 ### status : fail
-### message : kartu tidak ditemukan
-### jika id dari kartu tidak di temukan
+### message : Gagal memperbarui pin kartu. Mohon pin pengguna tidak boleh kosong
+### jika pin dikosonkan ketika melakukan perubahan
+
+### response : 404
+### status : fail
+### message : Gagal memperbarui pin kartu. Mohon pin kartu harus 6 digit
+### jika pin kurang dari atau lebih dari 6 digit
+
+### response : 400
+### status : fail
+### message : Gagal memperbarui kartu. Id tidak ditemukan
+### jika sistem gagal memperbarui pin
+
 
   POST / deleteCard
   GET / getTransactionList
