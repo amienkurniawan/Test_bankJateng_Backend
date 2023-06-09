@@ -150,7 +150,7 @@ const editCardByIdHandler = (request, h) => {
   return response;
 
 };
-
+// /setPIN/{id}
 const editPinByIdHandler = (request, h) => {
   const { id } = request.params;
 

@@ -47,7 +47,19 @@
 ### jika id dari kartu tidak di temukan
 
 
-  POST /setPIN/:id
+## API :
+##  POST /setPIN/:id
+### body: data: { pin }
+### status : success
+### message : pin kartu berhasil diperbarui
+### response : 200
+
+### body: data: { id, nama, nomerkartu, expiredDate }
+### response : 404
+### status : fail
+### message : kartu tidak ditemukan
+### jika id dari kartu tidak di temukan
+
   POST / deleteCard
   GET / getTransactionList
   GET / getTransactionDetail /: id
