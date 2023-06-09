@@ -67,7 +67,7 @@ const addCardHandler = (request, h) => {
   response.code(500);
   return response;
 };
-
+// getCardList
 const getAllCardsHandler = () => {
 
   const dataCards = cards.map(item => {

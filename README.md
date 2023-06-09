@@ -30,7 +30,11 @@
 ### message : kartu berhasil ditambahkan
 ### jika kartu berhasil dibuat 
 
-  GET /getCardLists
+
+## API :
+##  GET /getCardLists
+### response { id, nama, nomerkartu }
+ 
   GET /getCardDetail/:id
   POST /setPIN/:id
   POST / deleteCard
