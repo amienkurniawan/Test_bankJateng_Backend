@@ -71,7 +71,7 @@ const addCardHandler = (request, h) => {
 const getAllCardsHandler = () => {
 
   const dataCards = cards.map(item => {
-    return { id: item.id, nama: item.nama, nomerkartu: item.nomerkartu }
+    return { id: item.id, nama: item.nama, nomerkartu: item.nomerkartu, expiredDate: item.expiredDate }
   });
 
   return {
@@ -83,7 +83,7 @@ const getAllCardsHandler = () => {
 
 
 };
-
+// getCardDetail/{id}
 const getCardsByIdHandler = (request, h) => {
   const { id } = request.params;
 
@@ -100,7 +100,7 @@ const getCardsByIdHandler = (request, h) => {
 
   const response = h.response({
     status: 'fail',
-    message: 'card tidak ditemukan',
+    message: 'kartu tidak ditemukan',
   });
   response.code(404);
   return response;

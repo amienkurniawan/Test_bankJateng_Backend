@@ -33,9 +33,20 @@
 
 ## API :
 ##  GET /getCardLists
-### response { id, nama, nomerkartu }
- 
-  GET /getCardDetail/:id
+### response : 201
+### body: data: { id, nama, nomerkartu, expiredDate }
+
+## API :
+## GET /getCardDetail/:id
+### response : 201
+### body: data: { id, nama, nomerkartu, expiredDate }
+
+### response : 404
+### status : fail
+### message : kartu tidak ditemukan
+### jika id dari kartu tidak di temukan
+
+
   POST /setPIN/:id
   POST / deleteCard
   GET / getTransactionList
