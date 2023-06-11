@@ -10,8 +10,8 @@ const {
   postingTransaction,
 } = require("./handler");
 
-GET / login
-GET / logout
+// GET / login
+// GET / logout
 // POST /addCard
 // GET /getCardList
 // GET /getCardDetail/:id
@@ -19,7 +19,7 @@ GET / logout
 // POST / deleteCard
 // GET / getTransactionList
 // GET / getTransactionDetail /: id
-POST / inquiryTransaction
+// POST / inquiryTransaction
 // POST / postingTransaction
 
 
