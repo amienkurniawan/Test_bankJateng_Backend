@@ -32,7 +32,7 @@ const authLoginHandler = (request, h) => {
         message: 'login berhasil',
         data: {
           token,
-          expiredIn: getHours()
+          expiresIn: getHours()
         }
       });
 
@@ -48,6 +48,12 @@ const authLoginHandler = (request, h) => {
     return response;
   } catch (error) {
     logger.error('error message', error)
+    const response = h.response({
+      status: 'fail',
+      message: 'internal server error',
+    });
+    response.code(500);
+    return response;
   }
 }
 
