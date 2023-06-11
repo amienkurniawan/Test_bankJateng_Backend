@@ -8,7 +8,13 @@ const {
   getTransactionListCardsHandler,
   getTransactionDetail,
   postingTransaction,
-} = require("./handler");
+} = require("./Handler/handler");
+
+const {
+  authLoginHandler,
+  authLogoutHandler,
+  authRefreshHandler,
+} = require("./Handler/AuthHandler");
 
 // GET / login
 // GET / logout
@@ -24,6 +30,21 @@ const {
 
 
 const routes = [
+  {
+    method: 'POST',
+    path: '/login',
+    handler: authLoginHandler
+  },
+  {
+    method: 'POST',
+    path: '/logout',
+    handler: authLogoutHandler
+  },
+  {
+    method: 'POST',
+    path: '/refreshtoken',
+    handler: authRefreshHandler
+  },
   {
     method: 'POST',
     path: '/addCard',

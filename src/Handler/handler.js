@@ -1,7 +1,7 @@
 const { nanoid } = require("nanoid");
-const cards = require("./cards");
-const transactions = require("./transactions");
-const inquery = require("./inquery");
+const cards = require("../Data/cards");
+const transactions = require("../Data/transactions");
+const inquery = require("../Data/inquery");
 
 
 const addCardHandler = (request, h) => {
