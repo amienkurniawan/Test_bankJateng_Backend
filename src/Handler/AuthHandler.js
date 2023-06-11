@@ -61,8 +61,33 @@ const authLogoutHandler = () => {
 
 }
 
-const authRefreshHandler = () => {
+const authRefreshHandler = (request, h) => {
+  const { token } = request.payload;
+  try {
+    const decoded = JWT.verify(token, secretKey);
+    const newToken = generateToken({ username: decoded.username });
 
+    const response = h.response({
+      status: 'success',
+      message: 'refresh token berhasil',
+      data: {
+        token: newToken,
+        expiresIn: getHours()
+      }
+    });
+
+    response.code(200)
+    return response;
+
+  } catch (error) {
+    logger.error('error message', error)
+    const response = h.response({
+      status: 'fail',
+      message: 'Token tidak valid',
+    });
+    response.code(401);
+    return response;
+  }
 }
 
 
