@@ -2,6 +2,7 @@ const { nanoid } = require("nanoid");
 const cards = require("../Data/cards");
 const transactions = require("../Data/transactions");
 const inquery = require("../Data/inquery");
+const logger = require("../Utility/Logs");
 
 
 const addCardHandler = (request, h) => {
@@ -152,54 +153,64 @@ const editCardByIdHandler = (request, h) => {
 };
 // /setPIN/{id}
 const editPinByIdHandler = (request, h) => {
-  const { id } = request.params;
+  try {
+    const { id } = request.params;
+    const { pin } = request.payload;
 
-  const { pin } = request.payload;
+    const updatedAt = new Date().toISOString();
 
-  const updatedAt = new Date().toISOString();
+    if (pin === undefined) {
+      const response = h.response({
+        status: 'fail',
+        message: 'Gagal memperbarui pin kartu. Mohon pin pengguna tidak boleh kosong',
+      });
+      response.code(400);
+      return response;
+    }
 
-  if (!pin) {
+    if (pin.length !== 6) {
+      const response = h.response({
+        status: 'fail',
+        message: 'Gagal memperbarui pin kartu. Mohon pin kartu harus 6 digit',
+      });
+      response.code(400);
+      return response;
+    }
+
+
+    const index = cards.findIndex((card) => card.id === id);
+
+    if (index !== -1) {
+      cards[index] = {
+        ...cards[index],
+        pin, updatedAt
+      };
+
+      const response = h.response({
+        status: 'success',
+        message: 'pin kartu berhasil diperbarui',
+      });
+
+      response.code(200)
+      return response;
+    }
+
     const response = h.response({
       status: 'fail',
-      message: 'Gagal memperbarui pin kartu. Mohon pin pengguna tidak boleh kosong',
+      message: 'Gagal memperbarui kartu. Id tidak ditemukan',
     });
-    response.code(400);
+    response.code(404);
     return response;
-  }
+  } catch (error) {
 
-  if (pin.length !== 6) {
+    logger.error(error)
     const response = h.response({
       status: 'fail',
-      message: 'Gagal memperbarui pin kartu. Mohon pin kartu harus 6 digit',
+      message: 'Internal server error',
     });
-    response.code(400);
+    response.code(500);
     return response;
   }
-
-
-  const index = cards.findIndex((card) => card.id === id);
-
-  if (index !== -1) {
-    cards[index] = {
-      ...cards[index],
-      pin, updatedAt
-    };
-
-    const response = h.response({
-      status: 'success',
-      message: 'pin kartu berhasil diperbarui',
-    });
-
-    response.code(200)
-    return response;
-  }
-
-  const response = h.response({
-    status: 'fail',
-    message: 'Gagal memperbarui kartu. Id tidak ditemukan',
-  });
-  response.code(404);
-  return response;
 
 };
 

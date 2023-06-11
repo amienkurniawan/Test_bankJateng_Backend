@@ -61,6 +61,7 @@ const authLogoutHandler = () => {
 
 }
 
+// fungsi untuk membuat refresh token handler
 const authRefreshHandler = (request, h) => {
   const { token } = request.payload;
   try {
@@ -89,7 +90,6 @@ const authRefreshHandler = (request, h) => {
     return response;
   }
 }
-
 
 module.exports = {
   authLoginHandler,
